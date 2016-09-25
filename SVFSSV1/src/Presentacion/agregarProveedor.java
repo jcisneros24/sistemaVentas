@@ -18,9 +18,8 @@ import com.mysql.jdbc.Connection;
 import javax.swing.ImageIcon;
 
 public class agregarProveedor extends javax.swing.JFrame {
-
-    //guardar g = new guardar();
-    Connection cnn = (Connection) BD.getConnection();
+	BD cnn;
+//    Connection cnn = (Connection) BD.getConnection();
     /** Creates new form agregarProveedor */
     public agregarProveedor() {
     	setUndecorated(true);

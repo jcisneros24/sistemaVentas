@@ -3,7 +3,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -20,15 +19,14 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 import Datos.BD;
-import Datos.d_articulos;
 import Datos.d_catalogo;
-import Logica.c_articulos;
 import Logica.c_catalogo;
 
 public class buscarArticulo extends javax.swing.JFrame {
        DefaultTableModel modeloTabla;
        private TableRowSorter trsfiltro;
-       Connection cnn = BD.getConnection();  
+//       Connection cnn = BD.getConnection();  
+       BD cnn;
        PreparedStatement ps = null;
     public buscarArticulo() {
         modeloTabla=new DefaultTableModel(null,getColumnas());

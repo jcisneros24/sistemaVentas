@@ -7,7 +7,7 @@ import com.hiveit.pe.sistemaventas.bean.articulosBean;
 
 import Logica.c_articulos;
 
-public interface BdworkDao {
+public interface BdworkDao{
 	
 	/*Tabla Articulos*/
 	articulosBean insertarArticulo (articulosBean a) throws SQLException;

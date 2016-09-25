@@ -18,8 +18,8 @@ import Logica.c_cliente;
 import com.mysql.jdbc.Connection;
 
 public class agregarCliente extends javax.swing.JFrame {
-    //guardar g = new guardar();
-    Connection cnn = (Connection) BD.getConnection();
+	BD cnn;
+//    Connection cnn = (Connection) BD.getConnection();
     /** Creates new form agregarClientes */
     public agregarCliente() {
     	setUndecorated(true);

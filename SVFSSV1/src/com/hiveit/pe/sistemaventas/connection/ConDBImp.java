@@ -1,13 +1,16 @@
-package Datos;
+package com.hiveit.pe.sistemaventas.connection;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-public class BD {
-     public  static Connection getConnection()  {
-        Connection cn = null;
+public class ConDBImp implements ConDB{
+
+	@Override
+	public Connection getConnection() throws SQLException {
+		Connection cn = null;
         String conector = "com.mysql.jdbc.Driver";     
              
         String server = "localhost";
@@ -32,7 +35,7 @@ public class BD {
 	            }
         	}catch (final ClassNotFoundException e) {
             cn=null;
-            	//throw new SQLException("Error de conexion:" + e.getMessage());
+            	throw new SQLException("Error de conexion:" + e.getMessage());
         	} 
         return cn;
     }

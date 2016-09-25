@@ -7,17 +7,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.hiveit.pe.sistemaventas.bean.articulosBean;
+import com.hiveit.pe.sistemaventas.connection.ConDB;
 
-import Datos.BD;
 import Logica.c_articulos;
 
-public class BdWorkDaoImp implements BdworkDao {
+public class BdWorkDaoImp implements BdworkDao{
+	ConDB conDB;	
 
 	/*Implementacion tabla Articulos*/
 	@Override
 	public articulosBean insertarArticulo(articulosBean a) throws SQLException {
-		Connection cnn = BD.getConnection();
-        PreparedStatement ps = null;
+		Connection cnn = conDB.getConnection();
+	    PreparedStatement ps = null;
+	    
         ps = cnn.prepareStatement("INSERT INTO articulos (codarticulo, descripcion,color,codfam,codmedida,proveedor,estado,fingreso) VALUES (?,?,?,?,?,?,?,?)");
         ps.setString(1, a.getCodarticulo());
         ps.setString(2, a.getDescripcion());
@@ -40,7 +42,7 @@ public class BdWorkDaoImp implements BdworkDao {
 
 	@Override
 	public articulosBean buscarArtCod(String codarticulo, articulosBean a) throws SQLException {
-		Connection cnn = BD.getConnection();
+		Connection cnn = conDB.getConnection();
         PreparedStatement ps = null;
         ps = cnn.prepareStatement("select * from articulos where codarticulo=?");
         ps.setString(1, codarticulo);
@@ -66,7 +68,7 @@ public class BdWorkDaoImp implements BdworkDao {
 
 	@Override
 	public boolean eliminarArticulo(String codarticulo) throws SQLException {
-		 Connection cnn = BD.getConnection();
+			Connection cnn = conDB.getConnection();
 	        PreparedStatement ps = null;
 	        ps = cnn.prepareStatement("delete from articulos WHERE codarticulo=?");
 	        ps.setString(1, codarticulo);
@@ -82,7 +84,7 @@ public class BdWorkDaoImp implements BdworkDao {
 
 	@Override
 	public boolean actualizarArticulo(c_articulos a) throws SQLException {
-		Connection cnn = BD.getConnection();
+		Connection cnn = conDB.getConnection();
         PreparedStatement ps = null;
 
         ps = cnn.prepareStatement("UPDATE articulos SET codarticulo=?, descripcion=?,color=?,codfam=?, codmedida=?, proveedor=?,estado=?, fingreso=? WHERE idarticulo=" + a.getIdarticulo());
@@ -106,7 +108,7 @@ public class BdWorkDaoImp implements BdworkDao {
 
 	@Override
 	public ArrayList<articulosBean> mostrarArticulosConsulta() throws SQLException {
-		Connection cnn = BD.getConnection();
+		Connection cnn = conDB.getConnection();
         PreparedStatement ps = null;
         ArrayList<articulosBean> lista = new ArrayList<articulosBean>();
 
@@ -131,7 +133,7 @@ public class BdWorkDaoImp implements BdworkDao {
 
 	@Override
 	public ArrayList<articulosBean> mostrarArticulosMantenimiento() throws SQLException {
-		Connection cnn = BD.getConnection();
+		Connection cnn = conDB.getConnection();
         PreparedStatement ps = null;
         ArrayList<articulosBean> lista = new ArrayList<articulosBean>();
         ps = cnn.prepareStatement("SELECT * FROM articulos");
@@ -152,5 +154,5 @@ public class BdWorkDaoImp implements BdworkDao {
         ps.close();
         return lista;
 	}
-	/*Implementacion tabla Articulos*/
+	/*Implementacion tabla Articulos*/	
 }
